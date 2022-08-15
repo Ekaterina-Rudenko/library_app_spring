@@ -11,10 +11,8 @@ public class PersonMapper implements RowMapper<Person> {
   public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
     Person person = new Person();
     person.setId(rs.getInt("id"));
-    person.setName(rs.getString("name"));
-    person.setAge(rs.getInt("age"));
-    person.setEmail(rs.getString("email"));
-    person.setAddress(rs.getString("address"));
+    person.setFullName(rs.getString("full_name"));
+    person.setYearOfBirth(rs.getInt("year_of_birth"));
     return person;
   }
 }

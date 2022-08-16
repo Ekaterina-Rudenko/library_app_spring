@@ -14,10 +14,10 @@ public class Book {
   @Size(min = 2, max = 100, message = "Author should have size from 2 to 100 characters")
   private String author;
 
-  @NotEmpty(message = "Year shouldn't be empty")
+/*  @NotEmpty(message = "Year shouldn't be empty")*/
   private int year;
 
-  public Book(String title, String author, int year) {
+  public Book(int id, String title, String author, int year) {
     this.title = title;
     this.author = author;
     this.year = year;

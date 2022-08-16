@@ -16,7 +16,7 @@ public class Person {
   @Min(value = 1900, message = "Year of birth should be greater than 1900")
   private int yearOfBirth;
 
-  public Person(String fullName, int yearOfBirth) {
+  public Person(int id, String fullName, int yearOfBirth) {
     this.fullName = fullName;
     this.yearOfBirth = yearOfBirth;
   }

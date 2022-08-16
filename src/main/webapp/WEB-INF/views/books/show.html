@@ -6,16 +6,16 @@
 </head>
 <body>
 
-<p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} +', ' + ${book.getYear()}">VALUE</p>
+<p th:text="${book.getTitle() + ', ' + book.getAuthor() +', ' + book.getYear()}">VALUE</p>
 
 <div th:if="${owner}">
-  <span>Current book owner is:</span>
-  <span th:text="${owner.getFullName()}">Value</span>
+  <span>Current book owner is:</span><span th:text="${owner.getFullName()}">Value</span>
 
-  <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId})}">
-    <input type="submit" value="Release this book!">
+  <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+    <input type="submit" value="Release this book!"/>
   </form>
 </div>
+
 
 <div th:if="${people}">
   <span>Book is free. Assign it to: </span>
@@ -31,7 +31,7 @@
 
 <hr/>
 
-<form th:method="PATCH" th:action="@{/books/{id}/edit(id=${book.getId()})}">
+<form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
   <input type="submit" value="Edit book!">
 </form>
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -40,7 +41,7 @@ public class BooksController {
     return "/books/index";
   }
   @GetMapping("/{id}")
-  public String show(@PathVariable("id") int id, Model model){
+  public String show(@PathVariable("id") int id, Model model, @ModelAttribute("person") Person person ){
     model.addAttribute("book", bookDAO.show(id));
     Optional<Person> owner = bookDAO.getOwner(id);
     if(owner.isPresent()){
@@ -54,6 +55,7 @@ public class BooksController {
   public String newBook(@ModelAttribute("book")Book book){
     return "/books/new";
   }
+
   @PostMapping()
   public String create(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult){
     bookValidator.validate(book, bindingResult);
@@ -88,5 +90,11 @@ public class BooksController {
   public String release(@PathVariable("id")int id){
     bookDAO.release(id);
     return "redirect:/books/" + id;
+  }
+
+  @DeleteMapping("/{id}")
+  public String delete(@PathVariable("id") int id) {
+    bookDAO.delete(id);
+    return "redirect:/books";
   }
 }

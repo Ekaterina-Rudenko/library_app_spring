@@ -25,12 +25,8 @@ public class PersonValidator implements Validator {
   @Override
   public void validate(Object target, Errors errors) {
     Person person = (Person) target;
-    if (personDao.show(person.getEmail()).isPresent()) {
-      errors.rejectValue("email", "", "This email is already taken.");
-    }
-    if (!Character.isUpperCase(person.getName().codePointAt(0))) {
-      errors.rejectValue("name", "", "Name should start with a capital letter.");
+    if (personDao.showByFullName(person.getFullName()).isPresent()) {
+      errors.rejectValue("email", "", "This full name already exists.");
     }
   }
-  //khbhg
 }

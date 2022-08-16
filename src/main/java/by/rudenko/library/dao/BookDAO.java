@@ -56,5 +56,9 @@ public class BookDAO {
     return jdbcTemplate.query(SQL, new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
         .stream().findAny();
   }
+  public Optional<Book> showByTitleAndAuthor(String title, String author) {
+    return jdbcTemplate.query("Select * FROM book WHERE title=? AND author=?", new Object[]{title, author},
+        new BeanPropertyRowMapper<>(Book.class)).stream().findAny();
+  }
 
 }
